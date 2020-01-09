@@ -1,21 +1,23 @@
 package main
 
 import (
-	"fmt"
+	"os"
 
 	"gopkg.in/alecthomas/kingpin.v2"
 
-	"github.com/inloco/adr-tool/config"
+	newTeam "github.com/inloco/adr-tool/newteam"
 )
 
 var (
-	verbose = kingpin.Flag("verbose", "Verbose mode.").Short('v').Bool()
-	name    = kingpin.Arg("name", "Name of user.").Required().String()
+	cli = kingpin.New("adr", "Assists creating new ADRs at In Loco")
+
+	newTeamCmd  = cli.Command("new-team", "Create a new directory with a copy of the template")
+	newTeamCode = newTeamCmd.Arg("code", "Code that identifies your team. Max 6 chars.").Required().String()
 )
 
 func main() {
-	p, _ := config.LoadConfigFile(".")
-
-	kingpin.Parse()
-	fmt.Printf("%v, %s %s\n", *verbose, *name, p)
+	switch kingpin.MustParse(cli.Parse(os.Args[1:])) {
+	case newTeamCmd.FullCommand():
+		newTeam.NewTeam(*newTeamCode)
+	}
 }
