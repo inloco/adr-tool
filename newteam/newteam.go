@@ -39,4 +39,6 @@ func NewTeam(teamCode string) {
 		fmt.Printf("error writing new template: %s", err)
 		return
 	}
+
+	fmt.Printf("Cool! Now add your first adr using `adr new --team %s \"Title\"`.\n", teamCode)
 }
