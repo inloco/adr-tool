@@ -1,4 +1,4 @@
-package new
+package create
 
 import (
 	"fmt"
@@ -72,7 +72,7 @@ func replaceInTemplate(template string, title string) string {
 	return template
 }
 
-func New(team string, title string) {
+func Create(team string, title string) {
 	slug := slugify.Slugify(title)
 	number, err := getNextADRNumber(team)
 	if err != nil {

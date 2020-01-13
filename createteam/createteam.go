@@ -1,4 +1,4 @@
-package newteam
+package createteam
 
 import (
 	"fmt"
@@ -12,7 +12,7 @@ const (
 	newTemplateFormat = "%s/template.md"
 )
 
-func NewTeam(teamCode string) {
+func CreateTeam(teamCode string) {
 	if len(teamCode) > 6 {
 		fmt.Println("Code is too long! Keep it to a max of 6 characters")
 		return
@@ -40,5 +40,5 @@ func NewTeam(teamCode string) {
 		return
 	}
 
-	fmt.Printf("Cool! Now add your first adr using `adr new --team %s \"Title\"`.\n", teamCode)
+	fmt.Printf("Cool! Now add your first adr using `adr create --team %s \"Title\"`.\n", teamCode)
 }
